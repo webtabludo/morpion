@@ -194,6 +194,7 @@ class ViewController: UIViewController {
             self.model.cellUsed.removeAll()
             self.model.cellUsedO.removeAll()
             self.model.cellUsedX.removeAll()
+            self.model.used.removeAll()
         }
         alert.addAction(ok)
         

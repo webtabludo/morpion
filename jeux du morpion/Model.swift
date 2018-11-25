@@ -73,7 +73,7 @@ struct Model {
             used.updateValue(stat, forKey: posit)
             
         }
-        print("cellX:\(cellUsedX)  cellO:\(cellUsedO)    celltotatl:\(cellUsed)")
+        print("cellX:\(cellUsedX)  cellO:\(cellUsedO)    celltotatl:\(cellUsed)   used:\(used)")
     }
     
     
