@@ -198,61 +198,94 @@ struct Model {
     }
     
     
+    // Fonction test si je suis proche de la victoire
     
+    mutating func almostMyVictoire () -> String {
+        var positString = ""
+        
+        let result = combinations(source: cellUsedX, takenBy: 2)
+        
+        for bigramme in result {
+            if procheVictoireArray.contains(bigramme.sorted()) {
+                
+                for trigramme in victoireArray where trigramme.contains(bigramme[0]) && trigramme.contains(bigramme[1]) {
+                    
+                    let setTri = Set(trigramme)
+                    let caseAJouer =  setTri.subtracting(Set(bigramme.sorted()))
+                    let position = Array(caseAJouer)
+                    
+                    if cellUsed.contains(position[0]) {
+                        
+                        
+                    } else {
+                        
+                        positString = position[0]
+                        jouer(statut: "croix", position: positString)
+                        
+                    }
+                }
+            }
+        }
+        
+        return positString
+    }
     
     //Fonction IA
     mutating func choixIA() -> String {
         
         var result = ""
-        result = almostVictoire()
-        
-        if result == ""  {
+        result = almostMyVictoire()
+        if result == "" {
+            result = almostVictoire()
             
-            if !cellUsed.contains(EtatCell.PositionCell.e.rawValue) {
+            if result == ""  {
                 
-                jouer(statut: "croix", position: EtatCell.PositionCell.e.rawValue)
-                result = "e"
-            } else if !cellUsed.contains(EtatCell.PositionCell.a.rawValue) {
-                
-                jouer(statut: "croix", position: EtatCell.PositionCell.a.rawValue)
-                result = "a"
-            } else if !cellUsed.contains(EtatCell.PositionCell.c.rawValue) {
-                
-                jouer(statut: "croix", position: EtatCell.PositionCell.c.rawValue)
-                result = "c"
-            } else if !cellUsed.contains(EtatCell.PositionCell.g.rawValue) {
-                
-                jouer(statut: "croix", position: EtatCell.PositionCell.g.rawValue)
-                result = "g"
-            } else if !cellUsed.contains(EtatCell.PositionCell.i.rawValue) {
-                
-                jouer(statut: "croix", position: EtatCell.PositionCell.i.rawValue)
-                result = "i"
-            } else if !cellUsed.contains(EtatCell.PositionCell.b.rawValue) {
-                
-                jouer(statut: "croix", position: EtatCell.PositionCell.b.rawValue)
-                result = "b"
-            } else if !cellUsed.contains(EtatCell.PositionCell.d.rawValue) {
-                
-                jouer(statut: "croix", position: EtatCell.PositionCell.d.rawValue)
-                result = "d"
-            } else if !cellUsed.contains(EtatCell.PositionCell.f.rawValue) {
-                
-                jouer(statut: "croix", position: EtatCell.PositionCell.f.rawValue)
-                result = "f"
-            } else if !cellUsed.contains(EtatCell.PositionCell.h.rawValue) {
-                
-                jouer(statut: "croix", position: EtatCell.PositionCell.h.rawValue)
-                result = "h"
-            } else {
-                
-                jouer(statut: "croix", position: EtatCell.PositionCell.e.rawValue)
-                result = "e"
+                if !cellUsed.contains(EtatCell.PositionCell.e.rawValue) {
+                    
+                    jouer(statut: "croix", position: EtatCell.PositionCell.e.rawValue)
+                    result = "e"
+                } else if !cellUsed.contains(EtatCell.PositionCell.a.rawValue) {
+                    
+                    jouer(statut: "croix", position: EtatCell.PositionCell.a.rawValue)
+                    result = "a"
+                } else if !cellUsed.contains(EtatCell.PositionCell.c.rawValue) {
+                    
+                    jouer(statut: "croix", position: EtatCell.PositionCell.c.rawValue)
+                    result = "c"
+                } else if !cellUsed.contains(EtatCell.PositionCell.g.rawValue) {
+                    
+                    jouer(statut: "croix", position: EtatCell.PositionCell.g.rawValue)
+                    result = "g"
+                } else if !cellUsed.contains(EtatCell.PositionCell.i.rawValue) {
+                    
+                    jouer(statut: "croix", position: EtatCell.PositionCell.i.rawValue)
+                    result = "i"
+                } else if !cellUsed.contains(EtatCell.PositionCell.b.rawValue) {
+                    
+                    jouer(statut: "croix", position: EtatCell.PositionCell.b.rawValue)
+                    result = "b"
+                } else if !cellUsed.contains(EtatCell.PositionCell.d.rawValue) {
+                    
+                    jouer(statut: "croix", position: EtatCell.PositionCell.d.rawValue)
+                    result = "d"
+                } else if !cellUsed.contains(EtatCell.PositionCell.f.rawValue) {
+                    
+                    jouer(statut: "croix", position: EtatCell.PositionCell.f.rawValue)
+                    result = "f"
+                } else if !cellUsed.contains(EtatCell.PositionCell.h.rawValue) {
+                    
+                    jouer(statut: "croix", position: EtatCell.PositionCell.h.rawValue)
+                    result = "h"
+                } else {
+                    
+                    jouer(statut: "croix", position: EtatCell.PositionCell.e.rawValue)
+                    result = "e"
+                }
             }
-        }
-        
-        return result
     }
+            return result
+        }
+   
 }
 
 
